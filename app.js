@@ -11,7 +11,7 @@ app.get('/api/miao', (req, res) => {
     let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
     console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] 访问者IP: ${ip}，name：${name}`)
 
-    if (!name || !fs.existsSync(`./data/${name}`)) {
+    if (!name || !fs.existsSync(`./data/normal-character/${name}`)) {
         if (!name) {
             let folders = fs.readdirSync('./data')
             name = folders[Math.floor(Math.random() * folders.length)]
@@ -21,14 +21,14 @@ app.get('/api/miao', (req, res) => {
         }
     }
 
-    fs.readdir(`./data/${name}`, (err, files) => {
+    fs.readdir(`./data/normal-character/${name}`, (err, files) => {
         if (err) {
             res.status(500).send({ error: '读取目录时发生错误。' })
         } else if (files.length === 0) {
             res.status(404).send({ error: '目录为空。' })
         } else {
             let randomFile = files[Math.floor(Math.random() * files.length)]
-            let filePath = `${process.cwd()}/data/${name}/${randomFile}`
+            let filePath = `${process.cwd()}/data/normal-character/${name}/${randomFile}`
             console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] 返回的图片: ${filePath}`)
 
             let type = mime.getType(filePath)
