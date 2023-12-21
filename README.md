@@ -2,7 +2,7 @@
 
 1.克隆本仓
 ```
-git clone --depth=1 https://gitee.com/Zyy955/character-Api.git
+git clone --depth=1 https://github.com/Zyy955/character-Api.git
 ```
 
 2.克隆咕咕牛图仓
