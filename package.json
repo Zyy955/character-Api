@@ -1,0 +1,15 @@
+{
+  "name": "image-server",
+  "version": "1.0.1",
+  "description": "传入名称，随机返回图片",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.4",
+    "mime": "^4.0.1"
+  }
+}
