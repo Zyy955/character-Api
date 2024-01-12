@@ -2,9 +2,18 @@ import express from 'express'
 import fs from 'fs'
 import moment from 'moment'
 import mime from 'mime'
+import { exec } from 'child_process'
 
 const app = express()
 const port = 3000
+
+setInterval(() => {
+    exec('cd data && git pull', (err, stdout, stderr) => {
+        if (err) return console.error(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] git pull 错误: ${err}`)
+        if (stdout) console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] git pull 输出: ${stdout}`)
+        if (stderr) return console.error(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] git pull 异常输出: ${stderr}`)
+    })
+}, 1 * 60 * 60 * 1000)
 
 app.get('/api/miao', (req, res) => {
     let name = req.query.name
